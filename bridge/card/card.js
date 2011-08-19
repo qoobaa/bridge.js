@@ -1,15 +1,19 @@
 YUI.add("bridge-card", function (Y) {
 
-    function Card(string) {
+    function Card(stringOrCard) {
         if (!Y.instanceOf(this, Card)) {
-            return new Card(string);
+            return new Card(stringOrCard);
         }
 
-        if (!Card.isCard(string)) {
-            Y.error(string + " is not a valid card");
-        }
+        if (Y.instanceOf(stringOrCard, Card)) {
+            this._card = stringOrCard._card;
+        } else {
+            if (!Card.isCard(stringOrCard)) {
+                Y.error(stringOrCard + " is not a valid card");
+            }
 
-        this._card = string;
+            this._card = stringOrCard;
+        }
     };
 
     Card.SUITS = ["C", "D", "H", "S"];
@@ -23,17 +27,11 @@ YUI.add("bridge-card", function (Y) {
 
     Card.HONOURS = ["J", "Q", "K", "A"];
 
-    Card.SUIT_SYMBOLS = { C: "♣", D: "♦", H: "♥", S: "♠" };
-
     Card.isCard = function (string) {
         return Y.Array.indexOf(Card.CARDS, string) !== -1;
     };
 
     Card.prototype = {
-
-        card: function () {
-            return this._card;
-        },
 
         suit: function () {
             return this._card[0];
@@ -49,30 +47,14 @@ YUI.add("bridge-card", function (Y) {
 
         compareTo: function (other) {
             if (this.suit() !== other.suit()) {
-                Y.error("comparing card of suit " + this.suitString() + " with suit " + other.suitString());
+                Y.error("comparing card of suit " + this.suit() + " with suit " + other.suit());
             }
 
             return Y.Array.indexOf(Card.CARDS, this._card) - Y.Array.indexOf(Card.CARDS, other._card);
         },
 
-        suitString: function () {
-            var suit = this.suit();
-
-            return Card.SUIT_SYMBOLS[suit];
-        },
-
-        valueString: function () {
-            var value = this.value();
-
-            return value === "T" ? "10" : value;
-        },
-
-        cardString: function () {
-            return this.suitString() + this.valueString();
-        },
-
         toString: function () {
-            return "<Card: " + this.cardString() + ">";
+            return this._card;
         }
     };
 

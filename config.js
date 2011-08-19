@@ -11,6 +11,10 @@ window.YUI_config = {
                 "bridge-bid": {
                     path: "bid/bid.js",
                     requires: []
+                },
+                "bridge-auction": {
+                    path: "auction/auction.js",
+                    requires: ["bridge-bid", "collection"]
                 }
             }
         },
@@ -24,6 +28,10 @@ window.YUI_config = {
                 "bridge-bid-test": {
                     path: "bid/bid.js",
                     requires: ["test", "bridge-bid"]
+                },
+                "bridge-auction-test": {
+                    path: "auction/auction.js",
+                    requires: ["test", "bridge-auction"]
                 }
             }
         }

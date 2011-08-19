@@ -40,10 +40,14 @@ YUI.add("bridge-card-test", function (Y) {
             isInstanceOf(Card, Card("HA"));
         },
 
+        testConstructorWorksLikeFactoryWhenCardGiven: function () {
+            isInstanceOf(Card, Card(Card("HA")));
+        },
+
         // card
 
         testCardReturnsCardString: function () {
-            areSame("HT", Card("HT").card());
+            areSame("HT", Card("HT").toString());
         },
 
         // suit

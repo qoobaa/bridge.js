@@ -1,15 +1,19 @@
 YUI.add("bridge-bid", function (Y) {
 
-    function Bid(string) {
+    function Bid(stringOrBid) {
         if (!Y.instanceOf(this, Bid)) {
-            return new Bid(string);
+            return new Bid(stringOrBid);
         }
 
-        if (!Bid.isBid(string)) {
-            Y.error(string + " is not a valid bid");
-        }
+        if (Y.instanceOf(stringOrBid, Bid)) {
+            this._bid = stringOrBid._bid;
+        } else {
+            if (!Bid.isBid(stringOrBid)) {
+                Y.error(stringOrBid + " is not a valid bid");
+            }
 
-        this._bid = string;
+            this._bid = stringOrBid;
+        }
     }
 
     Bid.LEVELS = ["1", "2", "3", "4", "5", "6", "7"];
@@ -28,17 +32,11 @@ YUI.add("bridge-bid", function (Y) {
 
     Bid.BIDS = ["PASS"].concat(Bid.MODIFIERS).concat(Bid.CONTRACTS);
 
-    Bid.SUIT_SYMBOLS = { C: "♣", D: "♦", H: "♥", S: "♠", NT: "NT" };
-
     Bid.isBid = function (string) {
         return Y.Array.indexOf(Bid.BIDS, string) !== -1;
     };
 
     Bid.prototype = {
-
-        bid: function () {
-            return this._bid();
-        },
 
         isContract: function () {
             return Y.Array.indexOf(Bid.CONTRACTS, this._bid) !== -1;
@@ -120,30 +118,8 @@ YUI.add("bridge-bid", function (Y) {
             }
         },
 
-        levelString: function () {
-            return this.level();
-        },
-
-        suitString: function () {
-            var suit = this.suit();
-
-            return Bid.SUIT_SYMBOLS[suit];
-        },
-
-        bidString: function () {
-            if (this.isContract()) {
-                return this.levelString() + this.suitString();
-            } else if (this.isDouble()) {
-                return "Double";
-            } else if (this.isRedouble()) {
-                return "Redouble";
-            } else if (this.isPass()) {
-                return "Pass";
-            }
-        },
-
         toString: function () {
-            return "<Bid: " + this.bidString() + ">";
+            return this._bid;
         }
 
     };
