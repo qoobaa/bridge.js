@@ -23,16 +23,41 @@ YUI.add("bridge-auction", function (Y) {
             return this._bids.length;
         },
 
-        contracts: function () {
-            return Y.Array.filter(this._bids, function (bid) {
+        lastContract: function () {
+            var contracts = Y.Array.filter(this._bids, function (bid) {
                 return bid.isContract();
+            });
+
+            return contracts[contracts.length - 1];
+        },
+
+        lastModifier: function () {
+            return Y.Array.reduce(this._bids, undefined, function (result, bid) {
+                if (bid.isContract()) {
+                    return undefined;
+                } else if (bid.isModifier()) {
+                    return bid;
+                } else {
+                    return result;
+                }
             });
         },
 
-        lastContract: function () {
-            var contracts = this.contracts();
+        declarer: function () {
+            var lastContractIndex, lastContractSuit, result,
+                lastContract = this.lastContract();
 
-            return contracts[contracts.length - 1];
+            if (lastContract) {
+                lastContractIndex = Y.Array.lastIndexOf(this._bids, lastContract);
+                lastContractSuit = lastContract.suit();
+
+                Y.Array.find(this._bids, function (bid, i) {
+                    result = i;
+                    return bid.suit() === lastContractSuit && i % 2 === lastContractIndex % 2;
+                });
+
+                return result % 4;
+            }
         },
 
         _isDoubleAllowed: function () {
