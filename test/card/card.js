@@ -2,7 +2,8 @@ YUI.add("bridge-card-test", function (Y) {
 
     var Card = Y.Bridge.Card,
         isTrue = Y.Assert.isTrue,
-        areSame = Y.Assert.areSame;
+        areSame = Y.Assert.areSame,
+        isInstanceOf = Y.Assert.isInstanceOf;
 
     Y.namespace("Bridge.Test").Card = new Y.Test.Case({
 
@@ -36,7 +37,7 @@ YUI.add("bridge-card-test", function (Y) {
         },
 
         testConstructorWorksLikeFactory: function () {
-            isTrue(Y.instanceOf(Card, Card("HA")));
+            isInstanceOf(Card, Card("HA"));
         },
 
         // card
