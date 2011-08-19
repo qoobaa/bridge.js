@@ -1,19 +1,15 @@
 YUI.add("bridge-card", function (Y) {
 
     function Card(string) {
-        var self = this;
-
-        if (!Y.instanceOf(self, Card)) {
-            self = new Card(string);
+        if (!Y.instanceOf(this, Card)) {
+            return new Card(string);
         }
 
         if (!Card.isCard(string)) {
             Y.error(string + " is not a valid card");
         }
 
-        self._card = string;
-
-        return self;
+        this._card = string;
     };
 
     Card.SUITS = ["C", "D", "H", "S"];
