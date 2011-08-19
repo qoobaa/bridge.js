@@ -4,9 +4,18 @@ window.YUI_config = {
         bridge: {
             base: "bridge/",
             modules: {
-                card: {
+                "bridge-card": {
                     path: "card/card.js",
                     requires: []
+                }
+            }
+        },
+        test: {
+            base: "test/",
+            modules: {
+                "bridge-card-test": {
+                    path: "card/card.js",
+                    requires: ["test", "bridge-card"]
                 }
             }
         }
