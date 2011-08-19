@@ -1,11 +1,19 @@
 YUI.add("bridge-card", function (Y) {
 
-    var Card = function (string) {
-        if (!Card.isCard(string)) {
-            Y.error("given string is not a valid card: " + string);
+    function Card(string) {
+        var self = this;
+
+        if (!Y.instanceOf(self, Card)) {
+            self = new Card(string);
         }
 
-        this._card = string;
+        if (!Card.isCard(string)) {
+            Y.error(string + " is not a valid card");
+        }
+
+        self._card = string;
+
+        return self;
     };
 
     Card.SUITS = ["C", "D", "H", "S"];
@@ -19,7 +27,7 @@ YUI.add("bridge-card", function (Y) {
 
     Card.HONOURS = ["J", "Q", "K", "A"];
 
-    Card.SUIT_STRINGS = { C: "♣", D: "♦", H: "♥", S: "♠" };
+    Card.SUIT_SYMBOLS = { C: "♣", D: "♦", H: "♥", S: "♠" };
 
     Card.isCard = function (string) {
         return Y.Array.indexOf(Card.CARDS, string) !== -1;
@@ -45,7 +53,7 @@ YUI.add("bridge-card", function (Y) {
 
         compareTo: function (other) {
             if (this.suit() !== other.suit()) {
-                Y.error("comparing card of suit " + this.suit() + " with suit " + other.suit());
+                Y.error("comparing card of suit " + this.suitString() + " with suit " + other.suitString());
             }
 
             return Y.Array.indexOf(Card.CARDS, this._card) - Y.Array.indexOf(Card.CARDS, other._card);
@@ -54,7 +62,7 @@ YUI.add("bridge-card", function (Y) {
         suitString: function () {
             var suit = this.suit();
 
-            return Card.SUIT_STRINGS[suit];
+            return Card.SUIT_SYMBOLS[suit];
         },
 
         valueString: function () {
