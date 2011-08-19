@@ -2,17 +2,11 @@ YUI.add("bridge-card-test", function (Y) {
 
     var Card = Y.Bridge.Card,
         isTrue = Y.Assert.isTrue,
-        isFalse = Y.Assert.isFalse,
-        isUndefined = Y.Assert.isUndefined,
         areSame = Y.Assert.areSame;
 
     Y.namespace("Bridge.Test").Card = new Y.Test.Case({
 
         name: "Card Tests",
-
-        setUp: function () {
-
-        },
 
         _should: {
             error: {

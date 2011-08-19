@@ -7,6 +7,10 @@ window.YUI_config = {
                 "bridge-card": {
                     path: "card/card.js",
                     requires: []
+                },
+                "bridge-bid": {
+                    path: "bid/bid.js",
+                    requires: []
                 }
             }
         },
@@ -16,6 +20,10 @@ window.YUI_config = {
                 "bridge-card-test": {
                     path: "card/card.js",
                     requires: ["test", "bridge-card"]
+                },
+                "bridge-bid-test": {
+                    path: "bid/bid.js",
+                    requires: ["test", "bridge-bid"]
                 }
             }
         }
