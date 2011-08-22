@@ -27,7 +27,11 @@ window.YUI_config = {
                 },
                 "bridge-deal": {
                     path: "deal/deal.js",
-                    requires: ["bridge-card", "biginteger"]
+                    requires: ["bridge-hand", "bridge-card", "biginteger", "collection"]
+                },
+                "bridge-hand": {
+                    path: "hand/hand.js",
+                    requires: ["bridge-card", "collection"]
                 }
             }
         },
@@ -49,6 +53,10 @@ window.YUI_config = {
                 "bridge-deal-test": {
                     path: "deal/deal.js",
                     requires: ["test", "bridge-deal"]
+                },
+                "bridge-hand-test": {
+                    path: "hand/hand.js",
+                    requires: ["test", "bridge-hand"]
                 }
             }
         }
