@@ -1,6 +1,15 @@
 window.YUI_config = {
     filter: "raw",
     groups: {
+        other: {
+            base: "other/",
+            modules: {
+                "biginteger": {
+                    path: "biginteger/biginteger.js",
+                    requires: []
+                }
+            }
+        },
         bridge: {
             base: "bridge/",
             modules: {
@@ -15,6 +24,10 @@ window.YUI_config = {
                 "bridge-auction": {
                     path: "auction/auction.js",
                     requires: ["bridge-bid", "collection"]
+                },
+                "bridge-deal": {
+                    path: "deal/deal.js",
+                    requires: ["bridge-card", "biginteger"]
                 }
             }
         },
@@ -32,6 +45,10 @@ window.YUI_config = {
                 "bridge-auction-test": {
                     path: "auction/auction.js",
                     requires: ["test", "bridge-auction"]
+                },
+                "bridge-deal-test": {
+                    path: "deal/deal.js",
+                    requires: ["test", "bridge-deal"]
                 }
             }
         }
