@@ -99,17 +99,17 @@ YUI.add("bridge-bid", function (Y) {
                 if (!other.isPass()) {
                     Y.error("could not compare pass bid with non-pass bid " + other._bid);
                 }
-                return true;
+                return 0;
             } else if (this.isDouble()) {
                 if (!other.isDouble()) {
                     Y.error("could not compare double bid with non-double bid " + other._bid);
                 }
-                return true;
+                return 0;
             } else if (this.isRedouble()) {
                 if (!other.isRedouble()) {
                     Y.error("could not compare redouble bid with non-redouble bid " + other._bid);
                 }
-                return true;
+                return 0;
             } else if (this.isContract()) {
                 if (!other.isContract()) {
                     Y.error("could not compare contract bid with non-contract bid " + other._bid);

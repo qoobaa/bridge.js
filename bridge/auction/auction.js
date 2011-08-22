@@ -23,14 +23,10 @@ YUI.add("bridge-auction", function (Y) {
             return this._bids.length;
         },
 
-        contracts: function () {
-            return Y.Array.filter(this._bids, function (bid) {
+        lastContract: function () {
+            var contracts = Y.Array.filter(this._bids, function (bid) {
                 return bid.isContract();
             });
-        },
-
-        lastContract: function () {
-            var contracts = this.contracts();
 
             return contracts[contracts.length - 1];
         },

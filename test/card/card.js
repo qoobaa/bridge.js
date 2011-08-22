@@ -46,7 +46,7 @@ YUI.add("bridge-card-test", function (Y) {
 
         // card
 
-        testCardReturnsCardString: function () {
+        testToStringReturnsCardString: function () {
             areSame("HT", Card("HT").toString());
         },
 
