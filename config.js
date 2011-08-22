@@ -32,6 +32,10 @@ window.YUI_config = {
                 "bridge-hand": {
                     path: "hand/hand.js",
                     requires: ["bridge-card", "collection"]
+                },
+                "bridge-trick": {
+                    path: "trick/trick.js",
+                    requires: ["bridge-card", "collection"]
                 }
             }
         },
@@ -57,6 +61,10 @@ window.YUI_config = {
                 "bridge-hand-test": {
                     path: "hand/hand.js",
                     requires: ["test", "bridge-hand"]
+                },
+                "bridge-trick-test": {
+                    path: "trick/trick.js",
+                    requires: ["test", "bridge-trick"]
                 }
             }
         }
