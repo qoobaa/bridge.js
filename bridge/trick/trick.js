@@ -28,7 +28,7 @@ YUI.add("bridge-trick", function (Y) {
         },
 
         indexOf: function (card) {
-            return Y.Array.indexOf(Y.Array.map(this._cards, String), card.toString());
+            return Y.Array.indexOf(Y.Array.map(this._cards, String), String(card));
         },
 
         contains: function (card) {
@@ -39,10 +39,30 @@ YUI.add("bridge-trick", function (Y) {
             return this._cards.length < 4 && !this.contains(card) && this._cards.push(Y.Bridge.Card(card)) && true;
         },
 
-        remove: function (card) {
-            var i = this.indexOf(card);
+        suit: function () {
+            return this._cards[0] && this._cards[0].suit();
+        },
 
-            return i !== -1 ? this._cards.splice(i, 1)[0] : undefined;
+        isComplete: function () {
+            return this._cards.length === 4;
+        },
+
+        winner: function (trump) {
+            return this._winnerInSuit(trump) || this._winnerInSuit(this.suit());
+        },
+
+        winnerIndex: function (trump) {
+            var card = this.winner(trump);
+
+            return card && this.indexOf(card);
+        },
+
+        _winnerInSuit: function (suit) {
+            return Y.Array.filter(this._cards, function (card) {
+                return card.suit() === suit;
+            }).sort(function (a, b) {
+                return b.compareTo(a);
+            })[0];
         }
 
     };
