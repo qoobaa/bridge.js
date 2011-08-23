@@ -26,6 +26,39 @@ YUI.add("bridge-trick-test", function (Y) {
             new Trick(["AA"]);
         },
 
+        // isComplete
+
+        testIsCompleteReturnsFalseWithoutCards: function () {
+            isFalse(this.trick.isComplete());
+        },
+
+        testIsCompleteReturnsTrueWithoutCards: function () {
+            this.trick.add("H2");
+            this.trick.add("H3");
+            this.trick.add("H4");
+            this.trick.add("H5");
+            isTrue(this.trick.isComplete());
+        },
+
+        // add
+
+        testAddReturnsTrueWithProperCard: function () {
+            isTrue(this.trick.add("HA"));
+        },
+
+        testAddReturnsFalseWithDuplicate: function () {
+            isTrue(this.trick.add("HA"));
+            isFalse(this.trick.add("HA"));
+        },
+
+        testAddReturnsFalseWhenComplete: function () {
+            isTrue(this.trick.add("H2"));
+            isTrue(this.trick.add("H3"));
+            isTrue(this.trick.add("H4"));
+            isTrue(this.trick.add("H5"));
+            isFalse(this.trick.add("HA"));
+        },
+
         // suit
 
         testSuitReturnsUndefinedWithoutCards: function () {
