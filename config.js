@@ -36,6 +36,10 @@ window.YUI_config = {
                 "bridge-trick": {
                     path: "trick/trick.js",
                     requires: ["bridge-card", "collection"]
+                },
+                "bridge-play": {
+                    path: "play/play.js",
+                    requires: ["bridge-card", "bridge-trick", "collection"]
                 }
             }
         },
@@ -65,6 +69,10 @@ window.YUI_config = {
                 "bridge-trick-test": {
                     path: "trick/trick.js",
                     requires: ["test", "bridge-trick"]
+                },
+                "bridge-play-test": {
+                    path: "play/play.js",
+                    requires: ["test", "bridge-play"]
                 }
             }
         }
