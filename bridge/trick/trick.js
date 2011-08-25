@@ -6,7 +6,9 @@ YUI.add("bridge-trick", function (Y) {
         }
 
         if (Y.instanceOf(arrayOrTrick, Trick)) {
-            this._cards = arrayOrTrick._cards.slice(0);
+            this._cards = Y.Array.map(arrayOrTrick._cards, function (card) {
+                return card.clone();
+            });
         } else {
             this._cards = [];
             Y.Array.each(arrayOrTrick, function (stringOrCard, i) {

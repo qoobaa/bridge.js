@@ -33,6 +33,10 @@ YUI.add("bridge-card", function (Y) {
 
     Card.prototype = {
 
+        clone: function () {
+            return new Card(this);
+        },
+
         suit: function () {
             return this._card[0];
         },
