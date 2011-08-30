@@ -42,13 +42,14 @@ YUI.add("bridge-play", function (Y) {
         },
 
         lead: function (index) {
-            var result = 0;
+            var i,
+                result = 0;
 
             if (!Y.Lang.isValue(index)) {
                 index = this._tricks.length - 1;
             }
 
-            for (var i = 0; i < index; i++) {
+            for (i = 0; i < index; i++) {
                 result += this.trick(i).winnerIndex();
             }
 
@@ -56,14 +57,14 @@ YUI.add("bridge-play", function (Y) {
         },
 
         winner: function (index) {
-            var result;
+            var i, result;
 
             if (!Y.Lang.isValue(index)) {
                 index = this._tricks.length - 1;
             }
 
             if (this.trick(index).isComplete()) {
-                for (var i = 0; i <= index; i++) {
+                for (i = 0; i <= index; i++) {
                     result += this.trick(i).winnerIndex();
                 }
 

@@ -95,7 +95,7 @@ YUI.add("bridge-auction", function (Y) {
         },
 
         isBidAllowed: function (bid) {
-            return !this.isFinished() &&
+            return !this.isComplete() &&
                 (bid.isPass() ||
                  (bid.isDouble() && this._isDoubleAllowed()) ||
                  (bid.isRedouble() && this._isRedoubleAllowed()) ||
@@ -108,7 +108,7 @@ YUI.add("bridge-auction", function (Y) {
             return this.isBidAllowed(bid) && this._bids.push(bid) && true;
         },
 
-        isFinished: function () {
+        isComplete: function () {
             if (this._bids.length > 3) {
                 return Y.Array.every(this._bids.slice(-3), function (bid) {
                     return bid.isPass();

@@ -10,6 +10,10 @@ YUI.add("bridge-play-test", function (Y) {
 
         name: "Play Tests",
 
+        setUp: function () {
+            this.play = new Play();
+        },
+
         _should: {
             error: {
                 testConstructingWithInvalidCards: true
