@@ -82,14 +82,21 @@ YUI.add("bridge-play", function (Y) {
             return this._tricks[index];
         },
 
-        add: function (card) {
-            var trick = this.trick();
+        current: function () {
+            return (this.lead() + this.trick().size()) % 4;
+        },
 
-            if (trick && !trick.isComplete()) {
-                return !this.contains(card) && trick.add(card);
-            } else {
-                return !this.isComplete() && !this.contains(card) && this._tricks.push(new Y.Bridge.Trick()) && trick.add(card);
+        add: function (card) {
+            var result,
+                trick = this.trick();
+
+            result = !this.contains(card) && trick.add(card);
+
+            if (trick.isComplete() && !this.isComplete()) {
+                this._tricks.push(new Y.Bridge.Trick());
             }
+
+            return result;
        }
 
     };

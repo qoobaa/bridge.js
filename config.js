@@ -40,6 +40,10 @@ window.YUI_config = {
                 "bridge-play": {
                     path: "play/play.js",
                     requires: ["bridge-card", "bridge-trick", "collection"]
+                },
+                "bridge-board": {
+                    path: "board/board.js",
+                    requires: ["bridge-deal", "bridge-auction", "bridge-play"]
                 }
             }
         },
@@ -73,6 +77,10 @@ window.YUI_config = {
                 "bridge-play-test": {
                     path: "play/play.js",
                     requires: ["test", "bridge-play"]
+                },
+                "bridge-board-test": {
+                    path: "board/board.js",
+                    requires: ["test", "bridge-board"]
                 }
             }
         }

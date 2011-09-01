@@ -60,6 +60,10 @@ YUI.add("bridge-auction", function (Y) {
             }
         },
 
+        current: function () {
+            return this._bids.length % 4;
+        },
+
         _isDoubleAllowed: function () {
             var bid1, bid2, bid3,
                 length = this._bids.length;
