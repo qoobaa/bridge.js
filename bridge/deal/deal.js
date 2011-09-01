@@ -16,12 +16,10 @@ YUI.add("bridge-deal", function (Y) {
         }
     }
 
-    Deal.NUMBER     = Y.BigInteger("53644737765488792839237440000");
-    Deal.MIN_NUMBER = Y.BigInteger(0);
-    Deal.MAX_NUMBER = Deal.NUMBER.subtract(1);
+    Deal.NUMBER = Y.BigInteger("53644737765488792839237440000");
 
     Deal.isDealId = function (bigInteger) {
-        return Deal.MIN_NUMBER.compare(bigInteger) <= 0 && Deal.MAX_NUMBER.compare(bigInteger) >= 0;
+        return Y.BigInteger(0).compare(bigInteger) <= 0 && Deal.NUMBER.compare(bigInteger) > 0;
     };
 
     Deal.randomId = function () {
