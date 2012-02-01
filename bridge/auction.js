@@ -1,20 +1,17 @@
 YUI.add("bridge-auction", function (Y) {
 
-    function Auction(arrayOrAuction) {
+    function Auction(array) {
         if (!Y.instanceOf(this, Auction)) {
-            return new Auction(arrayOrAuction);
+            return new Auction(array);
         }
 
-        if (Y.instanceOf(arrayOrAuction, Auction)) {
-            this._bids = arrayOrAuction._bids.slice(0);
-        } else {
-            this._bids = [];
-            Y.Array.each(arrayOrAuction, function (stringOrBid, i) {
-                if (!this.add(stringOrBid)) {
-                    Y.error("invalid bid " + stringOrBid + " at position " + i);
-                }
-            }, this);
-        }
+        this._bids = [];
+
+        Y.Array.each(array, function (bid, i) {
+            if (!this.add(bid)) {
+                Y.error("invalid bid " + bid + " at position " + i);
+            }
+        }, this);
     }
 
     Auction.prototype = {
