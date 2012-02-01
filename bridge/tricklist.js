@@ -21,8 +21,8 @@ YUI.add("bridge-tricklist", function (Y) {
         },
 
         size: function () {
-            return Y.Array.reduce(this._tricks, 0, function (previous, trick) {
-                return previous + trick.size();
+            return Y.Array.reduce(this._tricks, 0, function (sum, trick) {
+                return sum + trick.size();
             });
         },
 
@@ -36,37 +36,6 @@ YUI.add("bridge-tricklist", function (Y) {
             });
         },
 
-        lead: function (index) {
-            var i,
-                result = 0;
-
-            if (!Y.Lang.isValue(index)) {
-                index = this._tricks.length - 1;
-            }
-
-            for (i = 0; i < index; i++) {
-                result += this.trick(i).winnerIndex();
-            }
-
-            return result % 4;
-        },
-
-        winner: function (index) {
-            var i, result;
-
-            if (!Y.Lang.isValue(index)) {
-                index = this._tricks.length - 1;
-            }
-
-            if (this.trick(index).isComplete()) {
-                for (i = 0; i <= index; i++) {
-                    result += this.trick(i).winnerIndex();
-                }
-
-                return result % 4;
-            }
-        },
-
         trick: function (index) {
             var length = this._tricks.length;
 
@@ -75,10 +44,6 @@ YUI.add("bridge-tricklist", function (Y) {
             }
 
             return this._tricks[index];
-        },
-
-        current: function () {
-            return (this.lead() + this.trick().size()) % 4;
         },
 
         add: function (card) {
