@@ -95,7 +95,9 @@ YUI.add("bridge-auction", function (Y) {
             return !lastContract || lastContract.compareTo(contract) < 0;
         },
 
-        isBidAllowed: function (bid) {
+        isBidAllowed: function (string) {
+            var bid = Y.Bridge.Bid(string);
+
             return !this.isComplete() &&
                 (bid.isPass() ||
                  (bid.isDouble() && this._isDoubleAllowed()) ||
@@ -103,10 +105,8 @@ YUI.add("bridge-auction", function (Y) {
                  (bid.isContract() && this._isContractAllowed(bid)));
         },
 
-        add: function (stringOrBid) {
-            var bid = Y.Bridge.Bid(stringOrBid);
-
-            return this.isBidAllowed(bid) && this._bids.push(bid) && true;
+        add: function (string) {
+            return this.isBidAllowed(string) && this._bids.push(Y.Bridge.Bid(string)) && true;
         },
 
         isComplete: function () {

@@ -44,6 +44,10 @@ YUI.add("bridge-bid-test", function (Y) {
             isInstanceOf(Bid, Bid("7NT"));
         },
 
+        testConstructorWorksLikeFactoryWhenCardGiven: function () {
+            isInstanceOf(Bid, Bid(Bid("7NT")));
+        },
+
         // card
 
         testToStringReturnsCardString: function () {

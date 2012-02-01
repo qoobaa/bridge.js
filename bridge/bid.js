@@ -1,6 +1,8 @@
 YUI.add("bridge-bid", function (Y) {
 
     function Bid(string) {
+        string = string.toString();
+
         if (!Y.instanceOf(this, Bid)) {
             return new Bid(string);
         }
