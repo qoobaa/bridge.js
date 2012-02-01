@@ -1,22 +1,17 @@
 YUI.add("bridge-trick", function (Y) {
 
-    function Trick(arrayOrTrick) {
+    function Trick(array) {
         if (!Y.instanceOf(this, Trick)) {
-            return new Trick(arrayOrTrick);
+            return new Trick(array);
         }
 
-        if (Y.instanceOf(arrayOrTrick, Trick)) {
-            this._cards = Y.Array.map(arrayOrTrick._cards, function (card) {
-                return card.clone();
-            });
-        } else {
-            this._cards = [];
-            Y.Array.each(arrayOrTrick, function (stringOrCard, i) {
-                if (!this.add(stringOrCard)) {
-                    Y.error("invalid card " + stringOrCard + " at position " + i);
-                }
-            }, this);
-        }
+        this._cards = [];
+
+        Y.Array.each(array, function (string, i) {
+            if (!this.add(string)) {
+                Y.error("invalid card " + string + " at position " + i);
+            }
+        }, this);
     }
 
     Trick.prototype = {
@@ -51,12 +46,6 @@ YUI.add("bridge-trick", function (Y) {
 
         winner: function (trump) {
             return this._winnerInSuit(trump) || this._winnerInSuit(this.suit());
-        },
-
-        winnerIndex: function (trump) {
-            var card = this.winner(trump);
-
-            return card && this.indexOf(card);
         },
 
         _winnerInSuit: function (suit) {

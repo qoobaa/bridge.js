@@ -37,13 +37,13 @@ YUI.GlobalConfig = {
                     path: "trick.js",
                     requires: ["bridge-card", "collection"]
                 },
-                "bridge-play": {
-                    path: "play.js",
+                "bridge-tricklist": {
+                    path: "tricklist.js",
                     requires: ["bridge-card", "bridge-trick", "collection"]
                 },
                 "bridge-board": {
                     path: "board.js",
-                    requires: ["bridge-deal", "bridge-auction", "bridge-play"]
+                    requires: ["bridge-deal", "bridge-auction", "bridge-tricklist"]
                 }
             }
         },
@@ -74,9 +74,9 @@ YUI.GlobalConfig = {
                     path: "trick.js",
                     requires: ["test", "bridge-trick"]
                 },
-                "bridge-play-test": {
-                    path: "play.js",
-                    requires: ["test", "bridge-play"]
+                "bridge-tricklist-test": {
+                    path: "tricklist.js",
+                    requires: ["test", "bridge-tricklist"]
                 },
                 "bridge-board-test": {
                     path: "board.js",

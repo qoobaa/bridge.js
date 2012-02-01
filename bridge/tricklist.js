@@ -1,28 +1,23 @@
-YUI.add("bridge-play", function (Y) {
+YUI.add("bridge-tricklist", function (Y) {
 
-    function Play(arrayOrPlay) {
-        if (!Y.instanceOf(this, Play)) {
-            return new Play(arrayOrPlay);
+    function TrickList(array) {
+        if (!Y.instanceOf(this, TrickList)) {
+            return new TrickList(array);
         }
 
-        if (Y.instanceOf(arrayOrPlay, Play)) {
-            this._tricks = Y.Array.map(arrayOrPlay._tricks, function (trick) {
-                return trick.clone();
-            });
-        } else {
-            this._tricks = [];
-            Y.Array.each(arrayOrPlay, function (stringOrCard, i) {
-                if (!this.add(stringOrCard)) {
-                    Y.error("invalid card " + stringOrCard + " at position " + i);
-                }
-            }, this);
-        }
+        this._tricks = [];
+
+        Y.Array.each(array, function (string, i) {
+            if (!this.add(string)) {
+                Y.error("invalid card " + string + " at position " + i);
+            }
+        }, this);
     }
 
-    Play.prototype = {
+    TrickList.prototype = {
 
         clone: function () {
-            return new Play(this);
+            return new TrickList(this);
         },
 
         size: function () {
@@ -101,6 +96,6 @@ YUI.add("bridge-play", function (Y) {
 
     };
 
-    Y.namespace("Bridge").Play = Play;
+    Y.namespace("Bridge").TrickList = TrickList;
 
 }, "", { requires: ["bridge-card", "bridge-trick", "collection"] });

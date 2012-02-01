@@ -1,4 +1,4 @@
-YUI().use("console", "bridge-card-test", "bridge-bid-test", "bridge-auction-test", "bridge-deal-test", "bridge-hand-test", "bridge-trick-test", "bridge-play-test", function (Y) {
+YUI().use("console", "bridge-card-test", "bridge-bid-test", "bridge-auction-test", "bridge-deal-test", "bridge-hand-test", "bridge-trick-test", "bridge-tricklist-test", function (Y) {
     window.Y = Y;
 
     new Y.Console({ newestOnTop: false, width: 500, height: 500 }).render();
@@ -9,7 +9,7 @@ YUI().use("console", "bridge-card-test", "bridge-bid-test", "bridge-auction-test
     Y.Test.Runner.add(Y.Bridge.Test.Deal);
     Y.Test.Runner.add(Y.Bridge.Test.Hand);
     Y.Test.Runner.add(Y.Bridge.Test.Trick);
-    Y.Test.Runner.add(Y.Bridge.Test.Play);
+    Y.Test.Runner.add(Y.Bridge.Test.TrickList);
 
     Y.Test.Runner.run();
 });

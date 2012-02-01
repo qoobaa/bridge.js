@@ -109,21 +109,7 @@ YUI.add("bridge-trick-test", function (Y) {
             this.trick.add("HJ");
             this.trick.add("ST");
             areSame("SK", String(this.trick.winner("S")));
-        },
-
-        // winnerIndex
-
-        testWinnerReturnsUndefinedWithoutCards: function () {
-            isUndefined(this.trick.winner("H"));
-        },
-
-        testWinnerIndexReturnsCorrectIndexWithMultipleCardsOfOneSuit: function () {
-            this.trick.add("H2");
-            this.trick.add("HK");
-            this.trick.add("HJ");
-            this.trick.add("HT");
-            areSame(1, this.trick.winnerIndex("S"));
-        },
+        }
 
     });
 

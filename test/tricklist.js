@@ -1,17 +1,17 @@
-YUI.add("bridge-play-test", function (Y) {
+YUI.add("bridge-tricklist-test", function (Y) {
 
-    var Play = Y.Bridge.Play,
+    var TrickList = Y.Bridge.TrickList,
         isUndefined = Y.Assert.isUndefined,
         isTrue = Y.Assert.isTrue,
         isFalse = Y.Assert.isFalse,
         areSame = Y.Assert.areSame;
 
-    Y.namespace("Bridge.Test").Play = new Y.Test.Case({
+    Y.namespace("Bridge.Test").TrickList = new Y.Test.Case({
 
-        name: "Play Tests",
+        name: "TrickList Tests",
 
         setUp: function () {
-            this.play = new Play();
+            this.tricklist = new TrickList();
         },
 
         _should: {
@@ -23,9 +23,9 @@ YUI.add("bridge-play-test", function (Y) {
         // constructor
 
         testConstructingWithInvalidCards: function () {
-            new Play(["AA"]);
+            new TrickList(["AA"]);
         },
 
     });
 
-}, "", { requires: ["test", "bridge-play"] });
+}, "", { requires: ["test", "bridge-tricklist"] });
