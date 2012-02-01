@@ -1,11 +1,11 @@
-window.YUI_config = {
+YUI.GlobalConfig = {
     filter: "raw",
     groups: {
         other: {
             base: "other/",
             modules: {
                 "biginteger": {
-                    path: "biginteger/biginteger.js",
+                    path: "biginteger.js",
                     requires: []
                 }
             }
@@ -14,35 +14,35 @@ window.YUI_config = {
             base: "bridge/",
             modules: {
                 "bridge-card": {
-                    path: "card/card.js",
+                    path: "card.js",
                     requires: []
                 },
                 "bridge-bid": {
-                    path: "bid/bid.js",
+                    path: "bid.js",
                     requires: []
                 },
                 "bridge-auction": {
-                    path: "auction/auction.js",
+                    path: "auction.js",
                     requires: ["bridge-bid", "collection"]
                 },
                 "bridge-deal": {
-                    path: "deal/deal.js",
+                    path: "deal.js",
                     requires: ["bridge-hand", "bridge-card", "biginteger", "collection"]
                 },
                 "bridge-hand": {
-                    path: "hand/hand.js",
+                    path: "hand.js",
                     requires: ["bridge-card", "collection"]
                 },
                 "bridge-trick": {
-                    path: "trick/trick.js",
+                    path: "trick.js",
                     requires: ["bridge-card", "collection"]
                 },
                 "bridge-play": {
-                    path: "play/play.js",
+                    path: "play.js",
                     requires: ["bridge-card", "bridge-trick", "collection"]
                 },
                 "bridge-board": {
-                    path: "board/board.js",
+                    path: "board.js",
                     requires: ["bridge-deal", "bridge-auction", "bridge-play"]
                 }
             }
@@ -51,35 +51,35 @@ window.YUI_config = {
             base: "test/",
             modules: {
                 "bridge-card-test": {
-                    path: "card/card.js",
+                    path: "card.js",
                     requires: ["test", "bridge-card"]
                 },
                 "bridge-bid-test": {
-                    path: "bid/bid.js",
+                    path: "bid.js",
                     requires: ["test", "bridge-bid"]
                 },
                 "bridge-auction-test": {
-                    path: "auction/auction.js",
+                    path: "auction.js",
                     requires: ["test", "bridge-auction"]
                 },
                 "bridge-deal-test": {
-                    path: "deal/deal.js",
+                    path: "deal.js",
                     requires: ["test", "bridge-deal"]
                 },
                 "bridge-hand-test": {
-                    path: "hand/hand.js",
+                    path: "hand.js",
                     requires: ["test", "bridge-hand"]
                 },
                 "bridge-trick-test": {
-                    path: "trick/trick.js",
+                    path: "trick.js",
                     requires: ["test", "bridge-trick"]
                 },
                 "bridge-play-test": {
-                    path: "play/play.js",
+                    path: "play.js",
                     requires: ["test", "bridge-play"]
                 },
                 "bridge-board-test": {
-                    path: "board/board.js",
+                    path: "board.js",
                     requires: ["test", "bridge-board"]
                 }
             }
