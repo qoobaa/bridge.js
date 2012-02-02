@@ -1,15 +1,15 @@
 YUI.add("bridge-trick", function (Y) {
 
-    function Trick(array) {
+    function Trick(cards) {
         if (!Y.instanceOf(this, Trick)) {
-            return new Trick(array);
+            return new Trick(cards);
         }
 
         this._cards = [];
 
-        Y.Array.each(array, function (string, i) {
-            if (!this.add(string)) {
-                Y.error("invalid card " + string + " at position " + i);
+        Y.Array.each(cards, function (card, i) {
+            if (!this.add(card)) {
+                Y.error("invalid card " + card + " at position " + i);
             }
         }, this);
     }
@@ -17,11 +17,15 @@ YUI.add("bridge-trick", function (Y) {
     Trick.prototype = {
 
         clone: function () {
-            return new Trick(this);
+            return new Trick(this._cards);
         },
 
         size: function () {
             return this._cards.length;
+        },
+
+        cards: function () {
+            return this._cards.slice(0);
         },
 
         indexOf: function (card) {

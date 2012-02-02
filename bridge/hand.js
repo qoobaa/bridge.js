@@ -1,26 +1,23 @@
 YUI.add("bridge-hand", function (Y) {
 
-    function Hand(arrayOrHand) {
+    function Hand(cards) {
         if (!Y.instanceOf(this, Hand)) {
-            return new Hand(arrayOrHand);
+            return new Hand(cards);
         }
 
-        if (Y.instanceOf(arrayOrHand, Hand)) {
-            this._cards = arrayOrHand._cards.slice(0);
-        } else {
-            this._cards = [];
-            Y.Array.each(arrayOrHand, function (stringOrCard, i) {
-                if (!this.add(stringOrCard)) {
-                    Y.error("invalid card " + stringOrCard + " at position " + i);
-                }
-            }, this);
-        }
+        this._cards = [];
+
+        Y.Array.each(cards, function (card, i) {
+            if (!this.add(card)) {
+                Y.error("invalid card " + card + " at position " + i);
+            }
+        }, this);
     }
 
     Hand.prototype = {
 
         clone: function () {
-            return new Hand(this);
+            return new Hand(this._cards);
         },
 
         size: function () {

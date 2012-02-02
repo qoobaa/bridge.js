@@ -1,17 +1,17 @@
 YUI.add("bridge-bid", function (Y) {
 
-    function Bid(string) {
-        string = String(string);
+    function Bid(bid) {
+        bid = String(bid);
 
         if (!Y.instanceOf(this, Bid)) {
-            return new Bid(string);
+            return new Bid(bid);
         }
 
-        if (!Bid.isBid(string)) {
-            Y.error(string + " is not a valid bid");
+        if (!Bid.isBid(bid)) {
+            Y.error(bid + " is not a valid bid");
         }
 
-        this._bid = string;
+        this._bid = bid;
     }
 
     Bid.LEVELS = ["1", "2", "3", "4", "5", "6", "7"];

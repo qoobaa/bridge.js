@@ -1,25 +1,43 @@
 YUI.add("bridge-deal", function (Y) {
 
-    function Deal(bigIntegerOrDeal) {
+    function Deal(id, dealer, vulnerable) {
         if (!Y.instanceOf(this, Deal)) {
-            return new Deal(bigIntegerOrDeal);
+            return new Deal(id);
         }
 
-        if (Y.instanceOf(bigIntegerOrDeal, Deal)) {
-            this._id = Y.BigInteger(bigIntegerOrDeal._id);
-        } else {
-            if (!Deal.isDealId(bigIntegerOrDeal)) {
-                Y.error(bigIntegerOrDeal + " is not a valid deal id");
-            }
-
-            this._init(Y.BigInteger(bigIntegerOrDeal));
+        if (!Deal.isDealId(id)) {
+            Y.error(id + " is not a valid deal id");
         }
+
+        if (!Deal.isDirection(dealer)) {
+            Y.error(dealer + " is not a valid direction");
+        }
+
+        if (!Deal.isVulnerability(vulnerable)) {
+            Y.error(vulnerable + " is not a valid vulnerability");
+        }
+
+        this._dealer = dealer;
+        this._vulnerable = vulnerable;
+        this._init(Y.BigInteger(id));
     }
 
     Deal.NUMBER = Y.BigInteger("53644737765488792839237440000");
 
+    Deal.DIRECTIONS = ["N", "E", "S", "W"];
+
+    Deal.VULNERABILITIES = ["NONE", "NS", "EW", "BOTH"];
+
     Deal.isDealId = function (bigInteger) {
         return Y.BigInteger(0).compare(bigInteger) <= 0 && Deal.NUMBER.compare(bigInteger) > 0;
+    };
+
+    Deal.isDirection = function (string) {
+        return Y.indexOf(Deal.DIRECTIONS, string) !== -1;
+    };
+
+    Deal.isVulnerability = function (string) {
+        return Y.indexOf(Deal.VULNERABILITIES, string) !== -1;
     };
 
     Deal.randomId = function () {

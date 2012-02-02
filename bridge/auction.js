@@ -1,13 +1,13 @@
 YUI.add("bridge-auction", function (Y) {
 
-    function Auction(array) {
+    function Auction(cards) {
         if (!Y.instanceOf(this, Auction)) {
-            return new Auction(array);
+            return new Auction(cards);
         }
 
         this._bids = [];
 
-        Y.Array.each(array, function (bid, i) {
+        Y.Array.each(cards, function (bid, i) {
             if (!this.add(bid)) {
                 Y.error("invalid bid " + bid + " at position " + i);
             }

@@ -1,15 +1,15 @@
 YUI.add("bridge-tricklist", function (Y) {
 
-    function TrickList(array) {
+    function TrickList(cards) {
         if (!Y.instanceOf(this, TrickList)) {
-            return new TrickList(array);
+            return new TrickList(cards);
         }
 
         this._tricks = [];
 
-        Y.Array.each(array, function (string, i) {
-            if (!this.add(string)) {
-                Y.error("invalid card " + string + " at position " + i);
+        Y.Array.each(cards, function (card, i) {
+            if (!this.add(card)) {
+                Y.error("invalid card " + card + " at position " + i);
             }
         }, this);
     }
@@ -17,13 +17,11 @@ YUI.add("bridge-tricklist", function (Y) {
     TrickList.prototype = {
 
         clone: function () {
-            return new TrickList(this);
+            return new TrickList(this.cards());
         },
 
         size: function () {
-            return Y.Array.reduce(this._tricks, 0, function (sum, trick) {
-                return sum + trick.size();
-            });
+            return this.cards().length;
         },
 
         isComplete: function () {
@@ -33,6 +31,12 @@ YUI.add("bridge-tricklist", function (Y) {
         contains: function (card) {
             return Y.Array.some(this._tricks, function (trick) {
                 return trick.contains(card);
+            });
+        },
+
+        cards: function () {
+            return Y.Array.reduce(this._tricks, [], function (result, trick) {
+                return result.concat(trick.cards());
             });
         },
 
